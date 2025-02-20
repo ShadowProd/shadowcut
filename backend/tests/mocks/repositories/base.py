@@ -1,0 +1,2 @@
+class DummyBaseRepository:
+    pass

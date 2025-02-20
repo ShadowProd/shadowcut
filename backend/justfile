@@ -1,0 +1,42 @@
+# PowerShell instead of sh:
+set shell := ["powershell.exe", "-c"]
+
+# Default task: List all available tasks
+default:
+  @just --list
+
+# Install dependencies using Poetry
+install:
+  @poetry install
+
+# Check consistency between poetry.lock and pyproject.toml
+check:
+  @echo "🚀 Checking consistency between poetry.lock and pyproject.toml"
+  @poetry check --lock
+
+# Activate the virtual environment
+activate:
+  @poetry env activate
+
+# Run test with pytest
+test path:
+  @echo "🚀 Testing code with pytest"
+  @poetry run pytest path
+
+# Run all tests with pytest
+tests:
+  @echo "🚀 Testing code with pytest"
+  @poetry run pytest
+
+# Clean up build artifacts
+clean:
+  @echo "💩 Cleaning up build artifacts"
+  @poetry run python clean.py
+
+# Show dishka's dependencies graph
+dependencies_graph:
+  @poetry run python plot_dependencies_data.py
+
+# Run the application
+run:
+  @poetry run python main.py
